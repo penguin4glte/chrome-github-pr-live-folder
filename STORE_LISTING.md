@@ -51,13 +51,19 @@ GitHub 公式 API 以外へ送信されることはありません。
 - **単一用途の説明:** GitHub の Pull Request を取得し、Chrome のタブグループへ同期する。
 - **リモートコードの使用:** なし（すべてのコードはパッケージに同梱）。
 
-## 必要なアセット（別途用意）
+## 公開済みリンク
 
-- [ ] スクリーンショット 1280x800 または 640x400（1〜5枚、最低1枚必須）
+- リポジトリ: https://github.com/penguin4glte/chrome-github-pr-live-folder
+- **プライバシーポリシー URL（審査で登録）: https://penguin4glte.github.io/chrome-github-pr-live-folder/**
+
+## 必要なアセット
+
+- [ ] スクリーンショット 1280x800 または 640x400（1〜5枚、最低1枚必須）★要手動撮影
       例: タブグループ同期中の画面、設定画面、ポップアップ
-- [ ] （任意）小タイル 440x280
+- [x] 小タイル 440x280 … `store-assets/promo_small_440x280.png`
+- [x] マーキー 1400x560（任意）… `store-assets/promo_marquee_1400x560.png`
 - [x] アイコン 128x128 … `icons/icon128.png`（同梱済み）
-- [x] プライバシーポリシー … `PRIVACY.md` を GitHub Pages 等で公開し URL を登録
+- [x] プライバシーポリシー … GitHub Pages で公開済み（上記 URL）
 
 ## 公開手順
 
