@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+      width: 360px;
+      margin: 0;
+      color: #1f2328;
+      font-size: 13px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid #d1d9e0;
+    }
+    header .title { font-weight: 600; font-size: 14px; }
+    header .buttons { display: flex; gap: 6px; }
+    button {
+      padding: 3px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid #d1d9e0;
+      background: #f6f8fa;
+      cursor: pointer;
+    }
+    #status {
+      padding: 6px 12px;
+      color: #59636e;
+      font-size: 11px;
+      border-bottom: 1px solid #eaeef2;
+    }
+    #status.error { color: #d1242f; }
+    #list { max-height: 420px; overflow-y: auto; }
+    .pr {
+      display: block;
+      padding: 8px 12px;
+      border-bottom: 1px solid #eaeef2;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .pr:hover { background: #f6f8fa; }
+    .pr .pr-title {
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .pr .pr-meta { color: #59636e; font-size: 11px; margin-top: 2px; }
+    .draft-badge {
+      display: inline-block;
+      font-size: 10px;
+      color: #59636e;
+      border: 1px solid #d1d9e0;
+      border-radius: 10px;
+      padding: 0 6px;
+      margin-left: 6px;
+    }
+    .empty { padding: 24px 12px; text-align: center; color: #59636e; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="title">Pull Requests</span>
+    <span class="buttons">
+      <button id="sync">今すぐ同期</button>
+      <button id="options">設定</button>
+    </span>
+  </header>
+  <div id="status">読み込み中…</div>
+  <div id="list"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

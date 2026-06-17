@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub PR Live Folder",
+  "version": "1.0.0",
+  "description": "GitHubのPull Requestを定期取得してChromeのタブグループへ自動同期します（Arc / DiaのLive Folder風）",
+  "permissions": ["tabs", "tabGroups", "alarms", "storage"],
+  "host_permissions": ["https://api.github.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GitHub PR Live Folder",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

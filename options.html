@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>GitHub PR Live Folder - 設定</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #1f2328;
+      background: #f6f8fa;
+    }
+    h1 { font-size: 20px; }
+    h2 { font-size: 15px; margin: 0 0 12px; }
+    .card {
+      background: #fff;
+      border: 1px solid #d1d9e0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      margin: 16px 0 4px;
+    }
+    label:first-of-type { margin-top: 0; }
+    input[type="text"], input[type="password"], input[type="number"], select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 10px;
+      font-size: 14px;
+      border: 1px solid #d1d9e0;
+      border-radius: 6px;
+      background: #fff;
+    }
+    input[type="number"] { width: 120px; }
+    .hint { font-size: 12px; color: #59636e; margin-top: 4px; }
+    .hint code { background: #f0f1f3; padding: 1px 4px; border-radius: 4px; }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .checkbox-row label { margin: 0; font-weight: 400; }
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    button {
+      padding: 6px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #d1d9e0;
+      background: #f6f8fa;
+      cursor: pointer;
+    }
+    button.primary {
+      background: #1f883d;
+      border-color: #1f883d;
+      color: #fff;
+      font-weight: 600;
+    }
+    button:disabled { opacity: 0.5; cursor: default; }
+    #message, #loginMsg { font-size: 13px; }
+    .ok { color: #1a7f37; }
+    .error { color: #d1242f; }
+    .auth-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    #authStatus { font-size: 14px; }
+    #authStatus .login-name { font-weight: 600; }
+    #devicePanel {
+      margin-top: 16px;
+      padding: 16px;
+      background: #f6f8fa;
+      border: 1px solid #d1d9e0;
+      border-radius: 8px;
+    }
+    #userCode {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      background: #fff;
+      border: 1px solid #d1d9e0;
+      border-radius: 6px;
+      padding: 6px 14px;
+      margin: 8px 0;
+    }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <h1>GitHub PR Live Folder 設定</h1>
+
+  <div class="card">
+    <h2>GitHub アカウント</h2>
+    <label for="token">GitHub Personal Access Token</label>
+    <input type="password" id="token" placeholder="ghp_xxxx または github_pat_xxxx" autocomplete="off" />
+    <div class="hint">
+      Private リポジトリを含む場合は <code>repo</code> スコープ（fine-grained なら Pull requests: Read）が必要です。
+      組織のプライベートリポジトリには、トークンのSSO認可（組織がSAML SSOを使う場合）が必要です。
+      トークンはこの端末の拡張機能ストレージにのみ保存されます。
+    </div>
+    <div class="actions">
+      <button id="test">接続テスト</button>
+      <span id="authMessage"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>同期設定</h2>
+    <label for="query">検索クエリ</label>
+    <input type="text" id="query" />
+    <div class="hint">
+      GitHub の検索構文が使えます。例:
+      <code>is:pr is:open review-requested:@me</code> /
+      <code>is:pr is:open org:yappli author:@me</code> /
+      <code>is:pr is:open repo:owner/repo</code>
+    </div>
+
+    <label for="groupTitle">タブグループ名</label>
+    <input type="text" id="groupTitle" />
+
+    <label for="groupColor">タブグループの色</label>
+    <select id="groupColor">
+      <option value="grey">グレー</option>
+      <option value="blue">青</option>
+      <option value="red">赤</option>
+      <option value="yellow">黄</option>
+      <option value="green">緑</option>
+      <option value="pink">ピンク</option>
+      <option value="purple">紫</option>
+      <option value="cyan">シアン</option>
+      <option value="orange">オレンジ</option>
+    </select>
+
+    <label for="maxItems">最大表示件数 (1〜50)</label>
+    <input type="number" id="maxItems" min="1" max="50" />
+
+    <label for="intervalMinutes">同期間隔（分）</label>
+    <input type="number" id="intervalMinutes" min="1" max="60" />
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="removeStale" />
+      <label for="removeStale">クローズ/マージされたPRのタブを自動で閉じる</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="discardAfterLoad" />
+      <label for="discardAfterLoad">読み込み後にタブを休止してメモリを節約する</label>
+    </div>
+    <div class="checkbox-row">
+      <input type="checkbox" id="showCount" />
+      <label for="showCount">グループ名にPR件数を表示する</label>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="save">保存して同期</button>
+      <span id="message"></span>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
