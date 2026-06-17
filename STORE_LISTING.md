@@ -62,13 +62,17 @@ GitHub 公式 API 以外へ送信されることはありません。
       例: タブグループ同期中の画面、設定画面、ポップアップ
 - [x] 小タイル 440x280 … `store-assets/promo_small_440x280.png`
 - [x] マーキー 1400x560（任意）… `store-assets/promo_marquee_1400x560.png`
-- [x] アイコン 128x128 … `icons/icon128.png`（同梱済み）
+- [x] アイコン 128x128 … `src/icons/icon128.png`（同梱済み）
 - [x] プライバシーポリシー … GitHub Pages で公開済み（上記 URL）
 
 ## 公開手順
 
 1. [Developer Dashboard](https://chrome.google.com/webstore/devconsole/) に登録（初回のみ $5 の登録料）
-2. 「新しいアイテム」→ `github-pr-live-folder-v1.0.0.zip` をアップロード
+2. 配布用 zip を生成（`src/` の中身を zip 化。`manifest.json` がルートに来るようにする）
+   ```sh
+   ./scripts/package.sh   # github-pr-live-folder-v<version>.zip を出力
+   ```
+   作成された `github-pr-live-folder-v<version>.zip` を「新しいアイテム」からアップロード
 3. 上記の説明・スクリーンショット・カテゴリ・言語を入力
 4. プライバシー タブで「単一用途」「権限の正当化」「データ使用」を記入し、
    プライバシーポリシーの URL を登録

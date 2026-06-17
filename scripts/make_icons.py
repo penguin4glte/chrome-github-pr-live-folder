@@ -70,7 +70,7 @@ def make_png(size):
 
 
 def main():
-    out_dir = os.path.join(os.path.dirname(__file__), "..", "icons")
+    out_dir = os.path.join(os.path.dirname(__file__), "..", "src", "icons")
     os.makedirs(out_dir, exist_ok=True)
     for size in (16, 32, 48, 128):
         path = os.path.join(out_dir, f"icon{size}.png")
